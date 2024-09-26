@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       debug:
+        description: 'Enable debug mode'
         type: boolean
         default: false
 
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "[debug] Print start-up data"
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug }}
         run: |
           echo "Triggered by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref }}"
@@ -20,10 +21,10 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
 
       - name: "[debug] Print when triggered from main"
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug == 'true' && github.ref == 'refs/heads/main' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug && github.ref == 'refs/heads/main' }}
         run: echo "I was triggered from main"
 
       - name: "Greeting"
         run: echo "Hello, world"
 
-run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
+    run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}

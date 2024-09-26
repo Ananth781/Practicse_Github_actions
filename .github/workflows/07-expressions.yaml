@@ -27,4 +27,4 @@ jobs:
       - name: "Greeting"
         run: echo "Hello, world"
 
-    run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
+run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}

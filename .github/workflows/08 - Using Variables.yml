@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  # First job
+  # First job: build
   build:
     runs-on: ubuntu-latest
     env:
@@ -36,11 +36,14 @@ jobs:
     environment: prod  # Setting the job to the 'prod' environment
     steps:
       - name: Print Prod Variables
+        run: |
+          echo "Org overwritten var: $OVERWRITTEN_VAR"
+          echo "Repo var: $REPOSITORY_VAR"
+          echo "Environment var: $TARGET_VAR"
 
-      # Fourth job: echo-undefined
+  # Fourth job: echo-undefined
   echo-undefined:
     runs-on: ubuntu-latest
     steps:
       - name: Print Undefined Variables
         run: 'echo "Org var: $UNDEFINED_VAR_WITH_DEFAULT"'
-
